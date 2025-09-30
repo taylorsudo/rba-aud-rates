@@ -2,8 +2,16 @@ name: fetch-rba-rates
 
 on:
   schedule:
-    - cron: "5 7 * * *"   # 07:05 UTC (≈ after RBA 4pm AEST print)
+    # ~07:05 UTC ≈ after RBA 4pm AEST print
+    - cron: "5 7 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write   # needed to push updated JSON
+
+concurrency:
+  group: fetch-rba-rates
+  cancel-in-progress: false
 
 jobs:
   fetch:
@@ -20,43 +28,58 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
           git add public/rates-latest.json public/history.json
-          git commit -m "Update RBA rates [skip ci]" || echo "No changes"
+          git diff --quiet --cached && echo "No changes" || git commit -m "Update RBA rates [skip ci]"
           git push
 
       - name: Extract feed date from rates-latest.json
         id: meta
         run: |
           python3 - << 'PY'
-          import json, sys
-          j = json.load(open("public/rates-latest.json"))
+          import json, os
+          with open("public/rates-latest.json","r",encoding="utf-8") as f:
+              j = json.load(f)
           date = j.get("date","")
           print(f"date={date}")
-          open(os.environ["GITHUB_OUTPUT"],"a").write(f"date={date}\n")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"date={date}\n")
           PY
 
       - name: Dispatch event to Repo B
         if: steps.meta.outputs.date != ''
         env:
-          REPO_B_TOKEN: ${{ secrets.REPO_B_TOKEN }}
+          REPO_B_TOKEN: ${{ secrets.REPO_B_TOKEN }}   # PAT with public_repo (or repo) scope
           OWNER: taylorsudo
           REPO_B: rba-aud-rates-notion
           PAGES_BASE: https://taylorsudo.github.io/rba-aud-rates
         run: |
+          set -euo pipefail
           RATES_URL="${PAGES_BASE}/rates-latest.json"
           HIST_URL="${PAGES_BASE}/history.json"
-          BODY=$(cat <<EOF
+
+          read -r -d '' BODY <<'JSON'
           {
             "event_type": "rates_updated",
             "client_payload": {
-              "rates_url": "${RATES_URL}",
-              "history_url": "${HIST_URL}",
-              "date": "${{ steps.meta.outputs.date }}"
+              "rates_url": "__RATES_URL__",
+              "history_url": "__HIST_URL__",
+              "date": "__DATE__"
             }
           }
-          EOF
-          )
-          curl -sS -X POST \
+          JSON
+          BODY=${BODY/__RATES_URL__/${RATES_URL}}
+          BODY=${BODY/__HIST_URL__/${HIST_URL}}
+          BODY=${BODY/__DATE__/${{ steps.meta.outputs.date }}}
+
+          echo "Dispatching to ${OWNER}/${REPO_B} with date=${{ steps.meta.outputs.date }}"
+          HTTP_STATUS=$(curl -sS -o /tmp/resp.json -w "%{http_code}" -X POST \
             -H "Authorization: token ${REPO_B_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/${OWNER}/${REPO_B}/dispatches \
-            -d "${BODY}"
+            -d "${BODY}")
+
+          echo "GitHub API status: ${HTTP_STATUS}"
+          if [ "${HTTP_STATUS}" -lt 200 ] || [ "${HTTP_STATUS}" -ge 300 ]; then
+            echo "Dispatch failed. Response:"
+            cat /tmp/resp.json
+            exit 1
+          fi
