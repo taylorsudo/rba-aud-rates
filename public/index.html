@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>RBA AUD Exchange Rates</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    #chart { width: 100%; max-width: 980px; height: 520px; }
+    select { padding: 6px 10px; }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-3.1.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h2 style="margin:0">AUD per 1 Unit of Selected Currency</h2>
+    <label>
+      Currency:
+      <select id="codeSel"></select>
+    </label>
+  </header>
+
+  <p>Data source: RBA 4:00pm AEST feed. Graph shows <b>AUD per 1</b> of the selected currency (e.g., USD→AUD).</p>
+  <div id="chart"></div>
+
+  <script>
+    const HISTORY_URL = "./history.json"; // written by Action
+
+    let history = [];
+    let codes = [];
+
+    function computeSeries(code) {
+      const x = [];
+      const y = [];
+      for (const day of history) {
+        const d = day.date || "";
+        const found = (day.rates || []).find(r => r.code === code);
+        if (found && typeof found.aud_per_unit === "number") {
+          x.push(d);
+          y.push(found.aud_per_unit);
+        }
+      }
+      return { x, y };
+    }
+
+    function render(code) {
+      const { x, y } = computeSeries(code);
+      const trace = { x, y, mode: "lines", name: code };
+      const layout = {
+        title: `${code} → AUD`,
+        xaxis: { title: "Date" },
+        yaxis: { title: "AUD per 1 " + code, rangemode: "tozero" },
+        margin: { t: 48 }
+      };
+      Plotly.newPlot("chart", [trace], layout, { responsive: true });
+    }
+
+    function populateCodes() {
+      const set = new Set();
+      for (const day of history) {
+        for (const r of (day.rates || [])) set.add(r.code);
+      }
+      codes = Array.from(set).sort();
+      const sel = document.getElementById("codeSel");
+      sel.innerHTML = codes.map(c => `<option value="${c}">${c}</option>`).join("");
+      sel.value = codes.includes("USD") ? "USD" : codes[0];
+      sel.addEventListener("change", () => render(sel.value));
+      render(sel.value);
+    }
+
+    fetch(HISTORY_URL, { cache: "no-store" })
+      .then(r => r.json())
+      .then(j => { history = j; populateCodes(); })
+      .catch(err => {
+        document.getElementById("chart").innerHTML = "<p>Failed to load history.json</p>";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

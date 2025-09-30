@@ -1,0 +1,62 @@
+name: fetch-rba-rates
+
+on:
+  schedule:
+    - cron: "5 7 * * *"   # 07:05 UTC (≈ after RBA 4pm AEST print)
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run fetch script
+        run: |
+          python3 scripts/fetch_rba.py
+
+      - name: Commit & push artifacts
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/rates-latest.json public/history.json
+          git commit -m "Update RBA rates [skip ci]" || echo "No changes"
+          git push
+
+      - name: Extract feed date from rates-latest.json
+        id: meta
+        run: |
+          python3 - << 'PY'
+          import json, sys
+          j = json.load(open("public/rates-latest.json"))
+          date = j.get("date","")
+          print(f"date={date}")
+          open(os.environ["GITHUB_OUTPUT"],"a").write(f"date={date}\n")
+          PY
+
+      - name: Dispatch event to Repo B
+        if: steps.meta.outputs.date != ''
+        env:
+          REPO_B_TOKEN: ${{ secrets.REPO_B_TOKEN }}
+          OWNER: taylorsudo
+          REPO_B: rba-aud-rates-notion
+          PAGES_BASE: https://taylorsudo.github.io/rba-aud-rates
+        run: |
+          RATES_URL="${PAGES_BASE}/rates-latest.json"
+          HIST_URL="${PAGES_BASE}/history.json"
+          BODY=$(cat <<EOF
+          {
+            "event_type": "rates_updated",
+            "client_payload": {
+              "rates_url": "${RATES_URL}",
+              "history_url": "${HIST_URL}",
+              "date": "${{ steps.meta.outputs.date }}"
+            }
+          }
+          EOF
+          )
+          curl -sS -X POST \
+            -H "Authorization: token ${REPO_B_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${OWNER}/${REPO_B}/dispatches \
+            -d "${BODY}"
