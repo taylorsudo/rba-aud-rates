@@ -56,7 +56,8 @@ jobs:
           RATES_URL="${PAGES_BASE}/rates-latest.json"
           HIST_URL="${PAGES_BASE}/history.json"
 
-          read -r -d '' BODY <<'JSON'
+          # Build payload with placeholders, then substitute safely
+          read -r -d '' BODY <<'JSON' || true
           {
             "event_type": "rates_updated",
             "client_payload": {
@@ -70,16 +71,25 @@ jobs:
           BODY=${BODY/__HIST_URL__/${HIST_URL}}
           BODY=${BODY/__DATE__/${{ steps.meta.outputs.date }}}
 
-          echo "Dispatching to ${OWNER}/${REPO_B} with date=${{ steps.meta.outputs.date }}"
+          echo "::group::Dispatch payload"
+          echo "$BODY"
+          echo "::endgroup::"
+
+          API="https://api.github.com/repos/${OWNER}/${REPO_B}/dispatches"
+          echo "POST ${API}"
+
           HTTP_STATUS=$(curl -sS -o /tmp/resp.json -w "%{http_code}" -X POST \
             -H "Authorization: token ${REPO_B_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${OWNER}/${REPO_B}/dispatches \
-            -d "${BODY}")
+            "${API}" \
+            -d "${BODY}" || true)
 
           echo "GitHub API status: ${HTTP_STATUS}"
-          if [ "${HTTP_STATUS}" -lt 200 ] || [ "${HTTP_STATUS}" -ge 300 ]; then
-            echo "Dispatch failed. Response:"
-            cat /tmp/resp.json
-            exit 1
-          fi
+          echo "::group::GitHub API response"
+          cat /tmp/resp.json || true
+          echo "::endgroup::"
+
+          case "${HTTP_STATUS}" in
+            2*) exit 0 ;;
+            *)  echo "Dispatch failed." ; exit 1 ;;
+          esac
