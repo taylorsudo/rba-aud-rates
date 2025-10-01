@@ -1,81 +1,51 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>RBA AUD Exchange Rates</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 20px; }
-    header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-    #chart { width: 100%; max-width: 980px; height: 520px; }
-    select { padding: 6px 10px; }
-  </style>
+  <link rel="stylesheet" href="./styles.css">
   <script src="https://cdn.plot.ly/plotly-3.1.0.min.js"></script>
 </head>
+
 <body>
-  <header>
-    <h2 style="margin:0">AUD per 1 Unit of Selected Currency</h2>
-    <label>
-      Currency:
-      <select id="codeSel"></select>
-    </label>
-  </header>
+  <div class="container">
+    <div class="card">
+      <header>
+        <h1>🇦🇺 AUD Exchange Rates</h1>
+        <label>
+          <span>Currency:</span>
+          <select id="codeSel"></select>
+        </label>
+      </header>
 
-  <p>Data source: RBA 4:00pm AEST feed. Graph shows <b>AUD per 1</b> of the selected currency (e.g., USD→AUD).</p>
-  <div id="chart"></div>
+      <div class="info">
+        <div>
+          <p>
+            Chart shows how much <strong>1 unit</strong> of the selected currency is worth in Australian Dollars
+          </p>
+          <p>
+            Ready to transfer? <a href="https://wise.com/invite/ihpc/taylorlees" target="_blank">Move up to $1,000
+              fee-free with Wise!</a>
+          </p>
+        </div>
+        <a class="github-button" href="https://github.com/taylorsudo/rba-aud-rates"
+          data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large"
+          aria-label="Star taylorsudo/rba-aud-rates on GitHub">Star</a>
+      </div>
 
-  <script>
-    const HISTORY_URL = "./history.json"; // written by Action
+      <div id="chart"></div>
+    </div>
 
-    let history = [];
-    let codes = [];
+    <div class="footer">
+      Data from the <a href="https://www.rba.gov.au/statistics/frequency/exchange-rates.html" target="_blank">Reserve
+        Bank of Australia (RBA)</a>
+    </div>
+  </div>
 
-    function computeSeries(code) {
-      const x = [];
-      const y = [];
-      for (const day of history) {
-        const d = day.date || "";
-        const found = (day.rates || []).find(r => r.code === code);
-        if (found && typeof found.aud_per_unit === "number") {
-          x.push(d);
-          y.push(found.aud_per_unit);
-        }
-      }
-      return { x, y };
-    }
-
-    function render(code) {
-      const { x, y } = computeSeries(code);
-      const trace = { x, y, mode: "lines", name: code };
-      const layout = {
-        title: `${code} → AUD`,
-        xaxis: { title: "Date" },
-        yaxis: { title: "AUD per 1 " + code, rangemode: "tozero" },
-        margin: { t: 48 }
-      };
-      Plotly.newPlot("chart", [trace], layout, { responsive: true });
-    }
-
-    function populateCodes() {
-      const set = new Set();
-      for (const day of history) {
-        for (const r of (day.rates || [])) set.add(r.code);
-      }
-      codes = Array.from(set).sort();
-      const sel = document.getElementById("codeSel");
-      sel.innerHTML = codes.map(c => `<option value="${c}">${c}</option>`).join("");
-      sel.value = codes.includes("USD") ? "USD" : codes[0];
-      sel.addEventListener("change", () => render(sel.value));
-      render(sel.value);
-    }
-
-    fetch(HISTORY_URL, { cache: "no-store" })
-      .then(r => r.json())
-      .then(j => { history = j; populateCodes(); })
-      .catch(err => {
-        document.getElementById("chart").innerHTML = "<p>Failed to load history.json</p>";
-        console.error(err);
-      });
-  </script>
+  <script src="./script.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
+
 </html>
