@@ -14,11 +14,18 @@ function computeSeries(code) {
             y.push(found.aud_per_unit);
         }
     }
+    console.log(`Series for ${code}: ${x.length} data points`);
     return { x, y };
 }
 
 function render(code) {
     const { x, y } = computeSeries(code);
+
+    if (x.length === 0) {
+        document.getElementById("chart").innerHTML = 
+            `<p style="color: #e53e3e; padding: 20px;">No data available for ${code}</p>`;
+        return;
+    }
 
     const trace = {
         x,
@@ -53,11 +60,11 @@ function render(code) {
             title: "Date",
             gridcolor: '#e2e8f0',
             showline: true,
-            linecolor: '#cbd5e0'
+            linecolor: '#cbd5e0',
+            type: 'date'  // Explicitly set date type
         },
         yaxis: {
             title: `AUD per 1 ${code}`,
-            rangemode: "tozero",
             gridcolor: '#e2e8f0',
             showline: true,
             linecolor: '#cbd5e0'
@@ -89,6 +96,8 @@ function populateCodes() {
     }
     codes = Array.from(set).sort();
 
+    console.log(`Found ${codes.length} currency codes:`, codes);
+
     const sel = document.getElementById("codeSel");
     sel.innerHTML = codes.map(c => `<option value="${c}">${c}</option>`).join("");
     sel.value = codes.includes("USD") ? "USD" : codes[0];
@@ -97,13 +106,19 @@ function populateCodes() {
 }
 
 fetch(HISTORY_URL, { cache: "no-store" })
-    .then(r => r.json())
+    .then(r => {
+        if (!r.ok) {
+            throw new Error(`HTTP ${r.status}: ${r.statusText}`);
+        }
+        return r.json();
+    })
     .then(j => {
+        console.log(`Loaded ${j.length} days of history`);
         history = j;
         populateCodes();
     })
     .catch(err => {
         document.getElementById("chart").innerHTML =
             `<p style="color: #e53e3e; padding: 20px;">Failed to load data: ${err.message}</p>`;
-        console.error(err);
+        console.error('Fetch error:', err);
     });
