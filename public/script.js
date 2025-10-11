@@ -27,6 +27,12 @@ function render(code) {
         return;
     }
 
+    // Calculate min/max with padding for better visibility
+    const yMin = Math.min(...y);
+    const yMax = Math.max(...y);
+    const yRange = yMax - yMin;
+    const padding = yRange * 0.1; // 10% padding
+
     const trace = {
         x,
         y,
@@ -61,10 +67,11 @@ function render(code) {
             gridcolor: '#e2e8f0',
             showline: true,
             linecolor: '#cbd5e0',
-            type: 'date'  // Explicitly set date type
+            type: 'date'
         },
         yaxis: {
             title: `AUD per 1 ${code}`,
+            range: [yMin - padding, yMax + padding],  // Set tight range with padding
             gridcolor: '#e2e8f0',
             showline: true,
             linecolor: '#cbd5e0'
