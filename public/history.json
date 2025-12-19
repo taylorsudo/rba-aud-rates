@@ -8092,5 +8092,147 @@
         "title": "AU: 0.4832 SDR = 1 AUD 2025-12-18 RBA 4.00 pm Eastern Australian time"
       }
     ]
+  },
+  {
+    "source": "RBA 4pm",
+    "source_url": "https://www.rba.gov.au/rss/rss-cb-exchange-rates.xml",
+    "as_at_aest": "2025-12-19T16:38:00+11:00",
+    "date": "2025-12-19",
+    "base": "AUD",
+    "rates": [
+      {
+        "code": "CAD",
+        "per_aud": 0.9112,
+        "aud_per_unit": 1.0974539069359086,
+        "decimals": 4,
+        "title": "AU: 0.9112 CAD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "CHF",
+        "per_aud": 0.5255,
+        "aud_per_unit": 1.9029495718363465,
+        "decimals": 4,
+        "title": "AU: 0.5255 CHF = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "CNY",
+        "per_aud": 4.6535,
+        "aud_per_unit": 0.2148920167615773,
+        "decimals": 4,
+        "title": "AU: 4.6535 CNY = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "EUR",
+        "per_aud": 0.564,
+        "aud_per_unit": 1.773049645390071,
+        "decimals": 4,
+        "title": "AU: 0.5640 EUR = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "GBP",
+        "per_aud": 0.4942,
+        "aud_per_unit": 2.023472278429786,
+        "decimals": 4,
+        "title": "AU: 0.4942 GBP = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "HKD",
+        "per_aud": 5.1427,
+        "aud_per_unit": 0.1944503859840162,
+        "decimals": 4,
+        "title": "AU: 5.1427 HKD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "IDR",
+        "per_aud": 11067.0,
+        "aud_per_unit": 9.035872413481521e-05,
+        "decimals": 0,
+        "title": "AU: 11067 IDR = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "INR",
+        "per_aud": 59.51,
+        "aud_per_unit": 0.016803898504453033,
+        "decimals": 2,
+        "title": "AU: 59.51 INR = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "JPY",
+        "per_aud": 103.15,
+        "aud_per_unit": 0.009694619486185167,
+        "decimals": 2,
+        "title": "AU: 103.15 JPY = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "KRW",
+        "per_aud": 977.06,
+        "aud_per_unit": 0.0010234785990624936,
+        "decimals": 2,
+        "title": "AU: 977.06 KRW = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "MYR",
+        "per_aud": 2.6981,
+        "aud_per_unit": 0.37063118490789815,
+        "decimals": 4,
+        "title": "AU: 2.6981 MYR = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "NZD",
+        "per_aud": 1.147,
+        "aud_per_unit": 0.8718395815170008,
+        "decimals": 4,
+        "title": "AU: 1.1470 NZD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "PHP",
+        "per_aud": 38.77,
+        "aud_per_unit": 0.025793139025019344,
+        "decimals": 2,
+        "title": "AU: 38.77 PHP = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "SGD",
+        "per_aud": 0.8534,
+        "aud_per_unit": 1.1717834544176235,
+        "decimals": 4,
+        "title": "AU: 0.8534 SGD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "THB",
+        "per_aud": 20.77,
+        "aud_per_unit": 0.04814636494944632,
+        "decimals": 2,
+        "title": "AU: 20.77 THB = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "TWD",
+        "per_aud": 20.86,
+        "aud_per_unit": 0.04793863854266539,
+        "decimals": 2,
+        "title": "AU: 20.86 TWD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "USD",
+        "per_aud": 0.6609,
+        "aud_per_unit": 1.5130882130428203,
+        "decimals": 4,
+        "title": "AU: 0.6609 USD = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "VND",
+        "per_aud": 17391.0,
+        "aud_per_unit": 5.7501006267609686e-05,
+        "decimals": 0,
+        "title": "AU: 17391 VND = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      },
+      {
+        "code": "XDR",
+        "per_aud": 0.4834,
+        "aud_per_unit": 2.068680182043856,
+        "decimals": 4,
+        "title": "AU: 0.4834 SDR = 1 AUD 2025-12-19 RBA 4.00 pm Eastern Australian time"
+      }
+    ]
   }
 ]
