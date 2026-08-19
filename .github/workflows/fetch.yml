@@ -48,9 +48,9 @@ jobs:
         if: steps.meta.outputs.date != ''
         env:
           REPO_B_TOKEN: ${{ secrets.REPO_B_TOKEN }}   # PAT with public_repo (or repo) scope
-          OWNER: taylorsudo
+          OWNER: taylorl-ee
           REPO_B: rba-aud-rates-notion
-          PAGES_BASE: https://taylorsudo.github.io/rba-aud-rates
+          PAGES_BASE: https://taylorl-ee.github.io/rba-aud-rates
         run: |
           set -euo pipefail
           RATES_URL="${PAGES_BASE}/rates-latest.json"
