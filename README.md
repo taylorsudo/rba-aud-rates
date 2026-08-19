@@ -14,7 +14,7 @@ It does 3 things:
 
 ## 🔗 Works Together With
 
-- **[rba-aud-rates-notion](https://github.com/taylorsudo/rba-aud-rates-notion) (Repo B)**: optional consumer.  
+- **[rba-aud-rates-notion](https://github.com/taylorl-ee/rba-aud-rates-notion) (Repo B)**: optional consumer.  
   - Repo A emits a webhook to Repo B when new data is ready.  
   - Repo B then writes the rates into a Notion database.  
   - If you don’t need Notion, ignore Repo B and just use the JSON/graph here.
