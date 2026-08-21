@@ -1,149 +1,149 @@
 {
   "source": "RBA 4pm",
   "source_url": "https://www.rba.gov.au/rss/rss-cb-exchange-rates.xml",
-  "as_at_aest": "2026-08-20T16:35:00+10:00",
-  "date": "2026-08-20",
+  "as_at_aest": "2026-08-21T16:30:00+10:00",
+  "date": "2026-08-21",
   "base": "AUD",
   "rates": [
     {
       "code": "CAD",
-      "per_aud": 0.9818,
-      "aud_per_unit": 1.0185373803218578,
+      "per_aud": 0.9832,
+      "aud_per_unit": 1.017087062652563,
       "decimals": 4,
-      "title": "AU: 0.9818 CAD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.9832 CAD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "CHF",
-      "per_aud": 0.5692,
-      "aud_per_unit": 1.756851721714687,
+      "per_aud": 0.571,
+      "aud_per_unit": 1.7513134851138354,
       "decimals": 4,
-      "title": "AU: 0.5692 CHF = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.5710 CHF = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "CNY",
-      "per_aud": 4.7854,
-      "aud_per_unit": 0.20896894721444392,
+      "per_aud": 4.8026,
+      "aud_per_unit": 0.20822054720359806,
       "decimals": 4,
-      "title": "AU: 4.7854 CNY = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 4.8026 CNY = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "EUR",
-      "per_aud": 0.6095,
-      "aud_per_unit": 1.6406890894175552,
+      "per_aud": 0.6108,
+      "aud_per_unit": 1.6371971185330714,
       "decimals": 4,
-      "title": "AU: 0.6095 EUR = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.6108 EUR = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "GBP",
-      "per_aud": 0.523,
-      "aud_per_unit": 1.9120458891013383,
+      "per_aud": 0.5234,
+      "aud_per_unit": 1.9105846388995034,
       "decimals": 4,
-      "title": "AU: 0.5230 GBP = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.5234 GBP = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "HKD",
-      "per_aud": 5.5808,
-      "aud_per_unit": 0.17918577981651376,
+      "per_aud": 5.6033,
+      "aud_per_unit": 0.17846626095336676,
       "decimals": 4,
-      "title": "AU: 5.5808 HKD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 5.6033 HKD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "IDR",
-      "per_aud": 12647.0,
-      "aud_per_unit": 7.907013520993121e-05,
+      "per_aud": 12654.0,
+      "aud_per_unit": 7.90263948158685e-05,
       "decimals": 0,
-      "title": "AU: 12647 IDR = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 12654 IDR = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "INR",
-      "per_aud": 68.06,
-      "aud_per_unit": 0.014692918013517483,
+      "per_aud": 68.4,
+      "aud_per_unit": 0.014619883040935672,
       "decimals": 2,
-      "title": "AU: 68.06 INR = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 68.40 INR = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "JPY",
-      "per_aud": 112.89,
-      "aud_per_unit": 0.008858180529719196,
+      "per_aud": 113.49,
+      "aud_per_unit": 0.008811349017534584,
       "decimals": 2,
-      "title": "AU: 112.89 JPY = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 113.49 JPY = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "KRW",
-      "per_aud": 992.61,
-      "aud_per_unit": 0.0010074450186881051,
+      "per_aud": 988.83,
+      "aud_per_unit": 0.0010112961783117422,
       "decimals": 2,
-      "title": "AU: 992.61 KRW = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 988.83 KRW = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "MYR",
-      "per_aud": 2.877,
-      "aud_per_unit": 0.3475842891901286,
+      "per_aud": 2.8905,
+      "aud_per_unit": 0.3459609064175748,
       "decimals": 4,
-      "title": "AU: 2.8770 MYR = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 2.8905 MYR = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "NZD",
-      "per_aud": 1.1956,
-      "aud_per_unit": 0.8364001338240215,
+      "per_aud": 1.1966,
+      "aud_per_unit": 0.8357011532675914,
       "decimals": 4,
-      "title": "AU: 1.1956 NZD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 1.1966 NZD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "PGK",
-      "per_aud": 3.1487,
-      "aud_per_unit": 0.3175913869215867,
+      "per_aud": 3.1629,
+      "aud_per_unit": 0.31616554427898447,
       "decimals": 4,
-      "title": "AU: 3.1487 PGK = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 3.1629 PGK = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "PHP",
-      "per_aud": 43.83,
-      "aud_per_unit": 0.022815423226100844,
+      "per_aud": 44.06,
+      "aud_per_unit": 0.022696323195642305,
       "decimals": 2,
-      "title": "AU: 43.83 PHP = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 44.06 PHP = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "SGD",
-      "per_aud": 0.9049,
-      "aud_per_unit": 1.105094485578517,
+      "per_aud": 0.9071,
+      "aud_per_unit": 1.1024142872891634,
       "decimals": 4,
-      "title": "AU: 0.9049 SGD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.9071 SGD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "THB",
-      "per_aud": 23.39,
-      "aud_per_unit": 0.04275331338178709,
+      "per_aud": 23.37,
+      "aud_per_unit": 0.042789901583226354,
       "decimals": 2,
-      "title": "AU: 23.39 THB = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 23.37 THB = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "TWD",
-      "per_aud": 22.69,
-      "aud_per_unit": 0.04407227853680035,
+      "per_aud": 22.76,
+      "aud_per_unit": 0.04393673110720562,
       "decimals": 2,
-      "title": "AU: 22.69 TWD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 22.76 TWD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "USD",
-      "per_aud": 0.7116,
-      "aud_per_unit": 1.405283867341203,
+      "per_aud": 0.7145,
+      "aud_per_unit": 1.3995801259622114,
       "decimals": 4,
-      "title": "AU: 0.7116 USD = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.7145 USD = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "VND",
-      "per_aud": 18615.0,
-      "aud_per_unit": 5.372011818426001e-05,
+      "per_aud": 18620.0,
+      "aud_per_unit": 5.3705692803437166e-05,
       "decimals": 0,
-      "title": "AU: 18615 VND = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 18620 VND = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     },
     {
       "code": "XDR",
-      "per_aud": 0.5197,
-      "aud_per_unit": 1.924187030979411,
+      "per_aud": 0.52,
+      "aud_per_unit": 1.923076923076923,
       "decimals": 4,
-      "title": "AU: 0.5197 SDR = 1 AUD 2026-08-20 RBA 4.00 pm Eastern Australian time"
+      "title": "AU: 0.5200 SDR = 1 AUD 2026-08-21 RBA 4.00 pm Eastern Australian time"
     }
   ]
 }
